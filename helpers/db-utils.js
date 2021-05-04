@@ -1,8 +1,10 @@
 import { MongoClient } from 'mongodb'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export async function connectDatabase() {
 	const client = await MongoClient.connect(
-		'mongodb+srv://mongodb:mongodb12345@cluster0.4clyz.mongodb.net/nextjs-events?retryWrites=true&w=majority'
+		`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.4clyz.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 	)
 	return client
 }
